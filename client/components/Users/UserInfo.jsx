@@ -39,17 +39,7 @@ export default class UserInfo extends Component {
 
   getBlocked = (user, languageDictionary) => {
     if (user.size === 0) return '';
-    return user.get('blocked') ? ('Yes!') : ('No!');
-  };
-
-  getBlockedBF = (user, languageDictionary) => {
-    if (user.size === 0) return '';
-    const blockedBF = user.get('blocked_for');
-    let isBlockedBF = "Not blocked BF";
-    if (blockedBF && blockedBF.length > 0) {
-      isBlockedBF = "Blocked BF";
-    }
-    return isBlockedBF;
+    return user.get('blocked') ? (languageDictionary.yesLabel || 'Yes') : (languageDictionary.noLabel || 'No');
   };
 
   render() {
@@ -87,8 +77,7 @@ export default class UserInfo extends Component {
       { title: 'Username', property: 'username' },
       { title: 'Email', property: 'email' },
       { title: 'Identity', property: 'identity.connection' },
-      { title: 'Blocked!', property: 'isBlocked' },
-      { title: 'Blocked BF', property: 'isBlockedBF' },
+      { title: 'Blocked', property: 'isBlocked' },
       { title: 'Last IP', property: 'last_ip' },
       { title: 'Logins Count', property: 'logins_count' },
       { title: 'Memberships', property: 'currentMemberships' },
@@ -127,7 +116,6 @@ export default class UserInfo extends Component {
     userObject.currentMemberships = this.getMemberships(memberships);
     userObject.identity = this.getIdentities(user);
     userObject.isBlocked = this.getBlocked(user, languageDictionary);
-    userObject.isBlockedBF = this.getBlockedBF(user, languageDictionary);
 
     /* Grab all user properties that haven't been rejected or already used */
     const extraFieldProperties = _.keys(_.omit(userObject, excludeProperties));
@@ -150,7 +138,7 @@ export default class UserInfo extends Component {
     const nonNullFields = _.filter(fieldsAndValues, field => field.value) || [];
 
     return (
-      <LoadingPanel show={loading} animationStyle={{ paddingTop: '50px', paddingBottom: '5px' }}>
+      <LoadingPanel show={loading} animationStyle={{ paddingTop: '5px', paddingBottom: '5px' }}>
         <Error title={languageDictionary.errorTitle} message={getErrorMessage(languageDictionary, error, settings.errorTranslator)} />
         <div className="user-info">
           {nonNullFields.map((field, index) => <UserInfoField key={index}

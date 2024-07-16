@@ -85,7 +85,7 @@ export default class UserInfo extends Component {
       { title: 'User ID', property: 'user_id' },
       { title: 'Name', property: 'name' },
       { title: 'Username', property: 'username' },
-      { title: 'Email', property: 'email' },
+      // { title: 'Email', property: 'email' },
       { title: 'Identity', property: 'identity.connection' },
       { title: 'Blocked!', property: 'isBlocked' },
       { title: 'Blocked BF', property: 'isBlockedBF' },

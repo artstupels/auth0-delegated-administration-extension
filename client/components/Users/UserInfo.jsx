@@ -42,6 +42,16 @@ export default class UserInfo extends Component {
     return user.get('blocked') ? (languageDictionary.yesLabel || 'Yes') : (languageDictionary.noLabel || 'No');
   };
 
+  getBlockedBF = (user, languageDictionary) => {
+    if (user.size === 0) return '';
+    const blockedBF = user.get('blocked_for');
+    let isBlockedBF = false;
+    if (blockedBF && blockedBF.length > 0) {
+      isBlockedBF = true;
+    }
+    return isBlockedBF;
+  };
+
   render() {
     const { user, error, loading, memberships, settings } = this.props;
     const languageDictionary = this.props.languageDictionary || {};
@@ -78,6 +88,7 @@ export default class UserInfo extends Component {
       { title: 'Email', property: 'email' },
       { title: 'Identity', property: 'identity.connection' },
       { title: 'Blocked', property: 'isBlocked' },
+      { title: 'Blocked BF', property: 'isBlockedBF' },
       { title: 'Last IP', property: 'last_ip' },
       { title: 'Logins Count', property: 'logins_count' },
       { title: 'Memberships', property: 'currentMemberships' },
@@ -116,6 +127,7 @@ export default class UserInfo extends Component {
     userObject.currentMemberships = this.getMemberships(memberships);
     userObject.identity = this.getIdentities(user);
     userObject.isBlocked = this.getBlocked(user, languageDictionary);
+    userObject.isBlockedBF = this.getBlockedBF(user, languageDictionary);
 
     /* Grab all user properties that haven't been rejected or already used */
     const extraFieldProperties = _.keys(_.omit(userObject, excludeProperties));

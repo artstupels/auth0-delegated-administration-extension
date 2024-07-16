@@ -87,7 +87,7 @@ export default class UserInfo extends Component {
       { title: 'Username', property: 'username' },
       { title: 'Email', property: 'email' },
       { title: 'Identity', property: 'identity.connection' },
-      { title: 'Blocked', property: 'isBlocked' },
+      { title: 'Blocked!', property: 'isBlocked' },
       { title: 'Blocked BF', property: 'isBlockedBF' },
       { title: 'Last IP', property: 'last_ip' },
       { title: 'Logins Count', property: 'logins_count' },

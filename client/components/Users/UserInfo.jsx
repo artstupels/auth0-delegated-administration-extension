@@ -150,7 +150,7 @@ export default class UserInfo extends Component {
     const nonNullFields = _.filter(fieldsAndValues, field => field.value) || [];
 
     return (
-      <LoadingPanel show={loading} animationStyle={{ paddingTop: '5px', paddingBottom: '5px' }}>
+      <LoadingPanel show={loading} animationStyle={{ paddingTop: '50px', paddingBottom: '5px' }}>
         <Error title={languageDictionary.errorTitle} message={getErrorMessage(languageDictionary, error, settings.errorTranslator)} />
         <div className="user-info">
           {nonNullFields.map((field, index) => <UserInfoField key={index}

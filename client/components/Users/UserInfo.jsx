@@ -39,7 +39,7 @@ export default class UserInfo extends Component {
 
   getBlocked = (user, languageDictionary) => {
     if (user.size === 0) return '';
-    return user.get('blocked') ? (languageDictionary.yesLabel || 'Yes!') : (languageDictionary.noLabel || 'No!');
+    return user.get('blocked') ? ('Yes!') : ('No!');
   };
 
   getBlockedBF = (user, languageDictionary) => {

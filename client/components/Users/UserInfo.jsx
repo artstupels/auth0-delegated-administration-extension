@@ -45,9 +45,9 @@ export default class UserInfo extends Component {
   getBlockedBF = (user, languageDictionary) => {
     if (user.size === 0) return '';
     const blockedBF = user.get('blocked_for');
-    let isBlockedBF = false;
+    let isBlockedBF = "Not blocked BF";
     if (blockedBF && blockedBF.length > 0) {
-      isBlockedBF = true;
+      isBlockedBF = "Blocked BF";
     }
     return isBlockedBF;
   };
